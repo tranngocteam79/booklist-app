@@ -10,4 +10,4 @@ app.js vs. appv2.js:
 - change class Store to object Store
 - Read more : https://stackoverflow.com/questions/56611851/why-create-a-class-with-no-constructor-and-filled-with-static-methods-in-javascr
   ![architecture](booklist-app-OOP-architecture.png)
-  ![image outside folder](../booklist-app-procedural-vanilla-js/ApplicationFrameHost_4kxLyBmILM.png)
+  ![image outside folder](../../ApplicationFrameHost_4kxLyBmILM.png)
