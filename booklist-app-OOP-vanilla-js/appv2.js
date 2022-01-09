@@ -4,22 +4,21 @@ class Book {
     this.title = title;
     this.author = author;
     this.isbn = isbn;
-    console.log(Book._instance);
   }
 }
 
 // UI CLASS: Handles UI
-class UI {
-  static displayBooks() {
+const UI = {
+  displayBooks() {
     // const StoreBooks = [
     //   { title: "Book One", author: "Jack", isbn: "23742397424" },
     //   { title: "Book Two", author: "Jane", isbn: "5455645" },
     // ];
     const books = Store.getBook();
     books.forEach((book) => this.addBookToList(book));
-  }
+  },
 
-  static addBookToList(book) {
+  addBookToList(book) {
     const list = document.querySelector(".table-body");
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -29,13 +28,13 @@ class UI {
       <td><i class="far fa-window-close"></i></td>
     `;
     list.appendChild(row);
-  }
+  },
 
-  static deleteBook(el) {
+  deleteBook(el) {
     el.closest("tr").remove();
-  }
+  },
 
-  static showAlert(msg, className) {
+  showAlert(msg, className) {
     const alertEl = document.createElement("p");
     alertEl.classList.add(`alert-${className}`);
     alertEl.textContent = msg;
@@ -45,18 +44,18 @@ class UI {
     setTimeout(() => {
       alertEl.remove();
     }, 3000);
-  }
+  },
 
-  static clearField() {
+  clearField() {
     document.querySelector("#title").value = "";
     document.querySelector("#author").value = "";
     document.querySelector("#isbn").value = "";
-  }
-}
+  },
+};
 
 // STORE CLASS : Handles Storage
-class Store {
-  static getBook() {
+const Store = {
+  getBook() {
     let books;
     if (localStorage.getItem("books") === null) {
       books = [];
@@ -64,20 +63,20 @@ class Store {
       books = JSON.parse(localStorage.getItem("books"));
     }
     return books;
-  }
+  },
 
-  static addBook(book) {
+  addBook(book) {
     const books = this.getBook();
     books.push(book);
     localStorage.setItem("books", JSON.stringify(books));
-  }
+  },
 
-  static removeBook(isbn) {
+  removeBook(isbn) {
     let books = this.getBook();
     books = books.filter((book) => book.isbn !== isbn);
     localStorage.setItem("books", JSON.stringify(books));
-  }
-}
+  },
+};
 
 // EVENT: Display Books
 document.addEventListener("DOMContentLoaded", UI.displayBooks.bind(UI)); //https://trekinbami.medium.com/its-not-magic-using-bind-in-javascript-18834e95cd8e
@@ -124,7 +123,3 @@ document.querySelector(".table-body").addEventListener("click", (e) => {
   // Remove book from localStorage
   UI.showAlert("Book removed", "removed");
 });
-
-var instanceOne = new Book("book1", "jack", "123"); // Executes succesfully
-var instanceTwo = new Book("book2", "jane", "456"); // Throws error
-console.log(Book, instanceOne, instanceTwo);
