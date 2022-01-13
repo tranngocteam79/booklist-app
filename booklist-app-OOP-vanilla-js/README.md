@@ -1,6 +1,7 @@
 Approach:
 
 - HTML
+- CSS with BEM
 - Vanilla ES6 Javascript
 - Singleton Class (UI & Store)
 
